@@ -10,8 +10,8 @@ gc.collect() # Limpiar posible basura en memoria
 #***********************************************************#
 # Esta función es la encargada de coenctarse a la red WI-FI #
 #***********************************************************#
-nombreRed = 'LEON Y SARA'
-key = '212410LYS'
+nombreRed = 'NAME_RED'
+key = 'CONTRASENA_RED'
 
 wlan = network.WLAN(network.STA_IF)
 if not wlan.isconnected():
