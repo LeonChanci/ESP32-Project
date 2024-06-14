@@ -11,10 +11,10 @@ import sh1106
 i2c = SoftI2C(scl=Pin(22), sda=Pin(21), freq=400000)
 display = sh1106.SH1106_I2C(128, 64, i2c, Pin(2), 0x3c)
 buzzer = Pin(3, Pin.OUT)
-#display.sleep(False)
-#display.fill(0)
-#display.text('Holii', 0, 0, 1)
-#display.show()
+# display.sleep(False)
+# display.fill(0)
+# display.text('Holii', 0, 0, 1)
+# display.show()
 
 
 gc.collect()
@@ -36,9 +36,6 @@ coneccionwifi.connect_wifi(RED_NAME, PASS)
 # Obtener Fecha y Hora Actual
 (year, month, day, weekday, hour, minute, second, milisecond) = RTC().datetime()
 RTC().init((year, month, day, weekday, hour-5, minute, second, milisecond))
-
-
-
 
 try:
     tcp_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -176,7 +173,7 @@ def pintar(texto):
     display.text(texto, 0, 0, 1)
     display.show()
     buzzer.value(1)
-    
+
 pintar('Holiiii')
 
 def pintar2(texto):
@@ -209,7 +206,7 @@ def handle_interrupt(pin):
     last_move = "cargando..." + "|" + "cargando..." + "|" + "cargando..."
     movimiento = "0"
 
-#led_esp32 = Pin(2, Pin.OUT)
+# led_esp32 = Pin(2, Pin.OUT)
 pir_hc_sr501 = Pin(2, Pin.IN)
 pir_hc_sr501.irq(trigger=Pin.IRQ_RISING, handler=handle_interrupt)
 
@@ -222,24 +219,24 @@ def motion_thread():
         if motion:
             print("¡Movimiento Detectado!")
             for _ in range(5):
-                #led_esp32.on()
+                # led_esp32.on()
                 sleep(0.10)
-                #led_esp32.off()
+                # led_esp32.off()
                 sleep(0.10)
                 movimiento = "TRUE"
                 pintar('Detectado')
-                #send_email()
-                #display.fill(0)
-                #display.text('Detectado', 0, 0, 1)
-                #display.show()
+                # send_email()
+                # display.fill(0)
+                # display.text('Detectado', 0, 0, 1)
+                # display.show()
 
                 fecha = "{:02d}/{:02d}/{}".format(RTC().datetime()[2], RTC().datetime()[1], RTC().datetime()[0])
                 hora = "{:02d}:{:02d}:{:02d}:{:02d}".format(RTC().datetime()[4], RTC().datetime()[5], RTC().datetime()[6], RTC().datetime()[7])
                 last_move = movimiento + "|" + fecha + "|" + hora
             print("¡Movimiento Detenido!")
             pintar2(' ')
-            #display.fill(0)
-            #display.show()
+            # display.fill(0)
+            # display.show()
             motion = False
             return last_move
         sleep(1)
