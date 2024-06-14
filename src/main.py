@@ -17,12 +17,8 @@ i2c = SoftI2C(scl=Pin(22), sda=Pin(21), freq=400000)
 display = sh1106.SH1106_I2C(128, 64, i2c, Pin(16), 0x3c)
 
 # Credenciales de la RED WIFI
-# RED_NAME = 'ACADEMICA_POLI 6E'
-# PASS = ''
-
-# Credenciales de la RED WIFI
-RED_NAME = 'LEON Y SARA'
-PASS = '212410LYS'
+RED_NAME = 'ACADEMICA_POLI 6E'
+PASS = ''
 
 # Llamar función para conectarse a la RED WiFI
 coneccionwifi.connect_wifi(RED_NAME, PASS)
